@@ -8,6 +8,12 @@ The status is printed to <stdout> and a system notification is thrown below a ch
 
 Tested on MacOS Big Sur. Might work on other releases.
 
+## Todo
+
+- [x] Move scheduling from cron to launchd
+- [ ] Make script self-updating on run
+- [ ] Move todo to GitHub project boards
+
 ## Usage
 
 ### Run from the command line
