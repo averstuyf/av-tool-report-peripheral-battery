@@ -18,15 +18,34 @@ Tested on MacOS Big Sur. Might work on other releases.
 
 With `[battery-percentage-threshold]` an optional battery percentage treshold. Run without any arguments to use and see the default.
 
-### Add as a recurring cron job
+### Schedule as a launchd agent
+
+Make the project files accessible to all users of a machine by placing it in `/Users/Shared`. For a single user; a more limited location such as ~/Applications can be used.
+
+By making a shallow clone of the git repository (using `--depth 1`), only the most recent changes are downloaded.
 
 ```sh
-export VISUAL=nano; crontab -e
+git clone --depth 1 https://github.com/averstuyf/av-tool-report-peripheral-battery.git /Users/Shared/av-tool-report-peripheral-battery/
 ```
 
-Add a line containing `*/<repeat-minutes> * * * * <path>/report-peripheral-battery.sh [battery-percentage-threshold]`. With `<repeat-minutes>` the amount of minutes between reports.
+Make a symlink to the [launchd agent config](https://manpagez.com/man/5/launchd.plist/) file in `/Library/LaunchAgents` for all users or `~/Library/LaunchAgents` for a specific user.
 
-E.g.: `*/60 * * * * $HOME/Applications/report-peripheral-battery.sh 12` to check every hour if the battery capacity has dropped below 12%.
+```sh
+ln -s /Users/Shared/av-tool-report-peripheral-battery/com.av.report-peripheral-battery.plist /Library/LaunchAgents/com.av.report-peripheral-battery.plist
+```
+
+Have launchd load the agent.
+
+```sh
+launchctl load /Library/LaunchAgents/com.av.report-peripheral-battery.plist
+```
+
+See script output and errors.
+
+```sh
+cat /tmp/report-peripheral-battery.stdout
+cat /tmp/report-peripheral-battery.stderr
+```
 
 ## Acknowledgements
 
