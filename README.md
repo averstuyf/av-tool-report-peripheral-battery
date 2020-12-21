@@ -37,7 +37,7 @@ git clone --depth 1 https://github.com/averstuyf/av-tool-report-peripheral-batte
 Make a symlink to the [launchd agent config](https://manpagez.com/man/5/launchd.plist/) file in `/Library/LaunchAgents` for all users or `~/Library/LaunchAgents` for a specific user.
 
 ```sh
-ln -s /Users/Shared/av-tool-report-peripheral-battery/com.av.report-peripheral-battery.plist /Library/LaunchAgents/com.av.report-peripheral-battery.plist
+sudo ln -s /Users/Shared/av-tool-report-peripheral-battery/com.av.report-peripheral-battery.plist /Library/LaunchAgents/com.av.report-peripheral-battery.plist
 ```
 
 Have launchd load the agent.
