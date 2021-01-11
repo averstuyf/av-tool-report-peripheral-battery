@@ -8,7 +8,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/Users/Shared/av-tool-report-peripheral-battery/report-peripheral-battery.sh</string>
-    <string>10</string>
+    <string>15</string>
   </array>
 
   <key>EnvironmentVariables</key>
