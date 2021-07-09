@@ -11,6 +11,7 @@ Tested on MacOS Big Sur. Might work on other releases.
 ## Todo
 
 - [x] Move scheduling from cron to launchd
+- [x] Only report when battery status changed
 - [ ] Make script self-updating on run
 - [ ] Move todo to GitHub project boards
 

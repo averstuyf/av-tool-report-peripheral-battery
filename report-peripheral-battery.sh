@@ -1,5 +1,7 @@
 #!/bin/sh
-VERSION="3"
+VERSION="4"
+
+STATUS_FILENAME_PREFIX='device-battery-percentage'
 
 # Default threshold at 15%. Overridden by the first argument
 BATTERY_PERCENTAGE_THRESHOLD=${1:-15}
@@ -18,6 +20,19 @@ for device in Mouse Keyboard Trackpad; do
       printf "%s not found.\n" $device
       continue
     fi
+
+    # Retrieve the previously reported battery level
+    status_filename="${STATUS_FILENAME_PREFIX}.${device}"
+    previous_battery_percentage=$(<$status_filename)
+
+    # Guard against reporting the same level more than once in a row
+    if [ "$battery_percentage" ==  "$previous_battery_percentage" ]; then
+      printf "Identical %s battery at %s%%. Skip reporting.\n" $device $battery_percentage
+      continue
+    fi
+
+    # Store the battery level
+    echo $battery_percentage > $status_filename
 
     # Report appropriately
     message="$device battery at ${battery_percentage}%."

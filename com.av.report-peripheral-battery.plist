@@ -21,7 +21,7 @@
   <true/>
 
   <key>StartInterval</key>
-  <integer>3600</integer>
+  <integer>1800</integer>
 
   <key>StandardOutPath</key>
   <string>/tmp/report-peripheral-battery.stdout</string>
