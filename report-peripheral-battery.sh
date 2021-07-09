@@ -39,6 +39,7 @@ for device in Mouse Keyboard Trackpad; do
     echo $message
 
     if (( battery_percentage < BATTERY_PERCENTAGE_THRESHOLD )); then
+      # https://code-maven.com/display-notification-from-the-mac-command-line
       osascript -e "display notification \"$message\" with title \"$device Battery Low\""
     fi
 done
