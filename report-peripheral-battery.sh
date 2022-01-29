@@ -1,7 +1,8 @@
 #!/bin/sh
 VERSION="4"
 
-STATUS_FILENAME_PREFIX='device-battery-percentage'
+STATUS_FILENAME_PREFIX='.device-battery-percentage'
+STATUS_FILENAME_PATH=$HOME
 
 # Default threshold at 15%. Overridden by the first argument
 BATTERY_PERCENTAGE_THRESHOLD=${1:-15}
@@ -22,7 +23,7 @@ for device in Mouse Keyboard Trackpad; do
     fi
 
     # Retrieve the previously reported battery level
-    status_filename="${STATUS_FILENAME_PREFIX}.${device}"
+    status_filename="${STATUS_FILENAME_PATH}/${STATUS_FILENAME_PREFIX}.${device}"
     previous_battery_percentage=$(<$status_filename)
 
     # Guard against reporting the same level more than once in a row
